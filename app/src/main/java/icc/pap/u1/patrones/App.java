@@ -6,12 +6,58 @@ package icc.pap.u1.patrones;
 import icc.pap.models.ComputadoraBuilder;
 import icc.pap.models.ComputadoraConcreteBuilder;
 import icc.pap.models.ComputadoraDirector;
+import icc.pap.u1.patrones.factoryMethod.Importador;
+import icc.pap.u1.patrones.factoryMethod.ImportadorPuntoComa;
+import icc.pap.u1.patrones.factoryMethod.ImportadorTabulacion;
+
+import java.util.List;
+
+import javax.swing.text.PlainDocument;
+
 import icc.pap.creacionales.BuilderDemo;
+import icc.pap.creacionales.builder.Pizza;
+import icc.pap.creacionales.builder.PizzaBuilder;
+import icc.pap.creacionales.prototype.PlantillaEmail;
 import icc.pap.models.Computadora;
+
 
 public class App {
     public static void main(String[] args) {
         BuilderDemo.runBuilder();
+        runFactoryMethod();
+       // runPrototype();
+       runBuilder();
+    }
+
+    private static void runBuilder() {
+        Pizza pizza = new PizzaBuilder().build(); //no agrego informacion directamente, lo hago en el builder
+        System.out.println(pizza.descripcion()); 
+    
+    }
+
+    private static void runFactoryMethod() {
+        //CREADORES CONCRETOS
+       Importador impPC = new ImportadorPuntoComa(); //clase hija implementó el metodo crearLector para que dicha clase hija devuelva el punto y coma
+       Importador impTB = new ImportadorTabulacion();
+       //implementó el crearLector() para devolver LectorPuntoyComa
+       // el metodo crearLector tiene codigo en la hija, la hija devuelve un lector de linea de LectorPuntoComa
+       //La hija dice como instancio LectorLinea
+       //tengo un metodo crearLector() dice que es un LectorLinea
+       //el que dice QUE TIPO de LectorLinea va a implementar
+       System.out.println(impPC.importacion(List.of("S01;22.5;C", "S02;18;C", "18")));
+       //otro sensor que posee ya no las separaciones por punto y coma sino por tabulaciones
+
+    }
+    public static void runPrototype(){
+        //usar la plantilla
+        PlantillaEmail plantillaEmail = new PlantillaEmail("Aviso", "Pedido listo");
+        PlantillaEmail plantillaEmailSolicitudes = plantillaEmail.clone();
+
+        //operaciones que hacer al pEmail
+        plantillaEmailSolicitudes.cambiarAsunto("Solicitud");
+        System.out.println(plantillaEmail);
+        System.out.println(plantillaEmailSolicitudes.contenido()); //le cambié el valor 
+
     }
 
 }
