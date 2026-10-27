@@ -18,3 +18,4 @@ Debido a que cada patrón resuelve una necesidad concreta del problema. No es su
 Singleton responde a compartir una configuración común, en este caso se mantiene una unica instancia que proporciona el porcentaje de impuesto usado por ambos pedidos. Mientras que el Factory Method responde al requisito de crear dos modalidades de un pedido cada uno con comportamiento diferente
 
 **Ejecución en consola**
+![Salida en consola](image.png)
