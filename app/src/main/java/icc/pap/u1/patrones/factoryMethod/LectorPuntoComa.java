@@ -5,7 +5,7 @@ public class LectorPuntoComa implements LectorLinea {
     public Lectura leer(String linea){
         //dividir la línea por el separador ";" 
         //devolver una instancia de lectura
-        String[] lineaSeparada = linea.split("\t");
+        String[] lineaSeparada = linea.split(";");
         return new Lectura(lineaSeparada[0], Double.parseDouble(lineaSeparada[1]), lineaSeparada[2]);
     }
 }

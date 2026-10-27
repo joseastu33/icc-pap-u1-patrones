@@ -15,15 +15,30 @@ public final class PizzaBuilder {
     //osea: depende de los ingredientes de negocio
 
     //setters o agregadores, esta clase si tiene
-
+    public PizzaBuilder(){
+        this.size =  "mediana";
+        this.ingredientes = new ArrayList<>();
+        this.ingredientes.add("Queso");
+    }
+    
     //OPC1
     public PizzaBuilder setSize(String size){
         this.size = size;
         return this; //devuelven el mismo builder para acumular informacion 
     }
-
+    
     //OPC2
     public PizzaBuilder addIng(String ingrediente){
+        boolean contiene = ingredientes.contains(ingrediente);
+        for(String ingExi : ingredientes){
+            if(ingExi.equals(ingrediente)){
+                return this;
+            }
+        }
+        if(contiene)
+            return this;
+        this.ingredientes.add(ingrediente);
+
         this.ingredientes.add(ingrediente); //agrego a la lista
         return this; //para acumular informacion, puedo agregar informacion
     }
