@@ -15,6 +15,7 @@ public final class Pizza { //clase final: atributos final
         this.tamanio = tamanio;
         this.ingredientes = ingredientes;
     }
+    
     public String descripcion(){
         return "Pizza " + tamanio + " con: " + ingredientes;
     }
