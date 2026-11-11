@@ -1,0 +1,14 @@
+package icc.pap.estructurales.practica2;
+
+public class NotificacionAcademica extends Notificacion {
+
+    public NotificacionAcademica(CanalEnvio canal){
+        super(canal);
+    }
+
+    @Override
+    public void notificar(String destinatario, String mensaje) {
+        canal.enviar(destinatario, "Academico" + mensaje);
+    }
+    
+}
