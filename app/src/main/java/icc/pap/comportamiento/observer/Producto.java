@@ -7,6 +7,9 @@ import java.util.function.Consumer; //clase que JAVA ya tiene GUARDADA
 public class Producto {
     
     public final List<Consumer<CambioProducto>> observadores;
+    //primero era List<Consumer<Double>>
+    //luego era List<Consumer<Producto>>
+    //ahora es List<Consumer<CambioProducto>>
     //le cambio a Consumer de tipo 
     
     private String codigo;

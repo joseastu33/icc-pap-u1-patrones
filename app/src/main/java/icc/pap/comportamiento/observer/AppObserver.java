@@ -18,28 +18,33 @@ public class AppObserver {
         //consumers hacen las ACCIONES
 
         //quiero hacer que el consumer se activa cuando todo cambie pero actue solamente si fue el codigo que cambió
-        //p.suscribir(producto -> { //consumer
+        p.suscribir(producto -> { //consumer
             /// Imprimir el nuevo codigo (solo el codigo)
             /// siempre cuando cambia solo el CODIGO
             /// Algun IF
-            //if(!codigoViejo.equals(producto.getCodigo())){
-            //    System.out.printf("El codigo viejo es %: el nuevo es %", codigoViejo, producto.getCodigo());
-            //}
-            //System.out.println("Registro: $" + producto);
-        //});
-        //notifica a TODOS los SUSCRITOS
+            if(!producto.atributo().equals("codigo")){
+                System.out.printf("El codigo viejo es %: el nuevo es %", producto.anterior(), producto.nuevo());
+            }
+            System.out.println("Registro: $" + producto);
+        });
+
+        //notifica a TODOS los SUSCRITOS: primer Observador
         p.suscribir(cp -> {
+            System.out.println("Observador 1");
             System.out.println("Se modifico el: " + cp.atributo());
             System.out.println("Old= " + cp.anterior() + "| New = " + cp.nuevo());
         });  
-        System.out.println("Cambio el CODIGO");
-        p.setCodigo("P-001");
-        String codigoViejoDos = p.getCodigo();
-        
+
         p.suscribir(cp -> {
+            System.out.println("Observador 2");
             System.out.println("Se modifico el: " + cp.atributo());
             System.out.println("Old= " + cp.anterior() + "| New = " + cp.nuevo());
         });
+        
+        System.out.println("Cambio el CODIGO");
+        p.setCodigo("P-001");
+         System.out.println("Cambio el CODIGO");
+        p.setCodigo("P-002");
 
         
     }
