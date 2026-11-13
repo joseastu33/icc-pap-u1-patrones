@@ -27,6 +27,9 @@ public class Estudiante {
     }
 
     public void setCodigo(String codigo) {
+        if(this.promedioAcademico == promedioAcademico){
+            return;
+        }
         String codigoViejo = this.codigo;
         this.codigo = codigo;
         CambioEstudiante cmbEst =new CambioEstudiante(this, "codigo", codigoViejo, codigo);
@@ -38,6 +41,9 @@ public class Estudiante {
     }
 
     public void setNombreCompleto(String nombreCompleto) {
+        if(this.promedioAcademico == promedioAcademico){
+            return;
+        }
         String nombreOld = this.nombreCompleto;
         this.nombreCompleto = nombreCompleto;
         CambioEstudiante cEst = new CambioEstudiante(this, "nombre", nombreOld, nombreCompleto);
@@ -49,6 +55,9 @@ public class Estudiante {
     }
 
     public void setPromedioAcademico(double promedioAcademico) {
+        if(this.promedioAcademico == promedioAcademico){
+            return;
+        }
         double promOld = this.promedioAcademico;
         this.promedioAcademico = promedioAcademico;
         CambioEstudiante cEst = new CambioEstudiante(this, "promedio", promOld, promedioAcademico);
@@ -60,16 +69,30 @@ public class Estudiante {
     }
 
     public void setNumeroInasistencias(int numeroInasistencias) {
+        if (this.numeroInasistencias == numeroInasistencias) {
+            return;
+        }
+        int old = this.numeroInasistencias;
         this.numeroInasistencias = numeroInasistencias;
+        notificar(new CambioEstudiante(this, "numeroInasistencias",old, numeroInasistencias));
+    
     }
+    
 
     public EstadoMatricula getEstadoMatricula() {
         return estadoMatricula;
     }
 
     public void setEstadoMatricula(EstadoMatricula estadoMatricula) {
+        if (this.estadoMatricula == estadoMatricula) {
+            return;
+        }
+        EstadoMatricula estadoOld = this.estadoMatricula;
         this.estadoMatricula = estadoMatricula;
+        CambioEstudiante cEst = new CambioEstudiante(this, "estadoMatricula", estadoOld, estadoMatricula);
+        notificar(cEst);
     }
+
     public void suscribir(Consumer<CambioEstudiante> observer){
         listaObservers.add(observer);
     }

@@ -45,7 +45,8 @@ public class AppObserver {
         p.setCodigo("P-001");
          System.out.println("Cambio el CODIGO");
         p.setCodigo("P-002");
-
+        //CASOS de PRUEBA
+        
         
     }
 }
